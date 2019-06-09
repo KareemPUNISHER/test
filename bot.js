@@ -167,6 +167,15 @@ message.channel.send(`**:white_check_mark: ${user.tag} banned from the server ! 
 }
 });
 
+//عدد المبندين
+
+client.on('message', message => {
+    if (message.content.startsWith("G.bans")) {
+        message.guild.fetchBans()
+        .then(bans => message.channel.send(`Number of banned persons **${bans.size}** `))
+}
+});
+
 
 //الحاله
 
