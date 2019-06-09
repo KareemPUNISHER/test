@@ -179,18 +179,18 @@ let args = message.content.split(" ").slice(1).join(" ");
 
 
 client.users.get("314380735782060035").send(
-    "\n" + "**" + "? السيرفر :" + "**" +
+    "\n" + "**" + " السيرفر :" + "**" +
     "\n" + "**" + "» " + message.guild.name + "**" +
-    "\n" + "**" + " ? المرسل : " + "**" +
+    "\n" + "**" + "  المرسل : " + "**" +
     "\n" + "**" + "» " + message.author.tag + "**" +
-    "\n" + "**" + " ? الرسالة : " + "**" +
+    "\n" + "**" + "  الرسالة : " + "**" +
     "\n" + "**" + args + "**")
 
 let embed = new Discord.RichEmbed()
      .setAuthor(message.author.username, message.author.avatarURL)
      .setDescription(':mailbox_with_mail: تم ارسال الرسالة الى صاحب البوت بنجاح')
      .setThumbnail(message.author.avatarURL)
-     .setFooter("By : 3bker")
+     .setFooter("By : KareemPUNISHER")
                                                 
 
 message.channel.send(embed);
