@@ -167,14 +167,49 @@ message.channel.send(`**:white_check_mark: ${user.tag} banned from the server ! 
 }
 });
 
-//عدد المبندين
-
-client.on('message', message => {
-    if (message.content.startsWith("G.bans")) {
-        message.guild.fetchBans()
-        .then(bans => message.channel.send(`Number of banned persons **${bans.size}** `))
-}
-});
+//ميوت
+client.on("message", (message) => {
+    var command = message.content.split(" ")[0];
+    command = command.slice(prefix.length);
+    if (!message.content.startsWith(prefix)) return;
+    switch(command) {
+        case "mute" : 
+        
+        if (!message.channel.type =="text") return;
+        if (!message.member.hasPermission("MANAGE_CHANNELS")) return message.reply("**Sorry, You Don't Have `MANAGE_CHANNELS` permission**")
+        if(!message.guild.member(client.user).hasPermission("MANAGE_CHANNELS")) return message.reply("**I Don't Have `MANAGE_CHANNELS` Permission**").then(msg => msg.delete(6000))
+        if (!message.mentions.members.first()) return message.reply("**Mention a user!??**")
+        message.guild.channels.forEach(c => {
+            c.overwritePermissions(message.mentions.members.first().id, {
+                SEND_MESSAGES : false,
+                CONNECT : false
+            })
+        })
+        json[message.guild.id + message.mentions.members.first().id] = {muted : true};
+        fs.writeFile("json.json", JSON.stringify(json), err => {
+            if (err) console.error(err);
+        });
+        message.channel.send(`** <@${message.mentions.members.first().id}> Muted in the server!??**`);
+        break;
+        case "unmute" : 
+        if (!message.channel.type =="text") return;
+        if (!message.member.hasPermission("MANAGE_CHANNELS")) return message.reply("**Sorry, You Don't Have `MANAGE_CHANNELS` permission**")
+        if(!message.guild.member(client.user).hasPermission("MANAGE_CHANNELS")) return message.reply("**I Don't Have `MANAGE_CHANNELS` Permission**").then(msg => msg.delete(10000))
+        if (!message.mentions.members.first()) return message.reply("**Mention a user!??**")
+        if (!message.mentions.members.first()) return;
+        message.guild.channels.forEach(c => {
+            c.overwritePermissions(message.mentions.members.first().id, {
+                SEND_MESSAGES : null,
+                CONNECT : null
+            })
+        })
+        json[message.guild.id + message.mentions.members.first().id] = {muted : false};
+        fs.writeFile("json.json", JSON.stringify(json), err => {
+            if (err) console.error(err);
+        });
+        message.channel.send(`** <@${message.mentions.members.first().id}> Unmuted!??**`);
+    }
+})
 
 
 //الحاله
