@@ -124,7 +124,7 @@ client.on("message", async message => {
         let help = new Discord.RichEmbed()
             .setColor("RANDOM")
             .setThumbnail(message.author.avatarURL)
-            .setDescription(`**__برودكاست بوت | Version 1.1__ 
+            .setDescription(`**PUNISHERS__ 
 
             برودكاست عادي : ${prefix}bc
             معلومات عن السيرفر : ${prefix}server
