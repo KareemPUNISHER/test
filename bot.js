@@ -13,6 +13,7 @@ client.on('ready',  () => {
   });
 
 
+//برودكاست
 
 client.on("message", async message => {
     var command = message.content.split(" ")[0];
@@ -99,7 +100,7 @@ client.on("message", async message => {
             }
 });
 
-
+//معلومات السيرفر
 
 client.on("message", async message => {
     if(message.content == prefix + "server") {
@@ -131,6 +132,26 @@ client.on("message", async message => {
             برودكاست للأونلاين فقط : ${prefix}bco
 			لإعطاء الباند : ${prefix}ban
 			لمراسله صاحب البوت : ${prefix}contact
+			اوامر حاله البوت : ${prefix}status
+            
+            سيرفر الدعم: https://discord.gg/B6z7CB8
+            **`);
+            message.channel.sendEmbed(help); // رابط السيرفر يعود الى سيرفر CODES .
+    }
+});
+
+client.on("message", async message => {
+    if(message.content.startsWith(prefix + "help")) {
+        let help = new Discord.RichEmbed()
+            .setColor("RANDOM")
+            .setThumbnail(message.author.avatarURL)
+            .setDescription(`**PUNISHERS
+
+            streaming : ${prefix}sets
+			watching : ${prefix}setw
+			listening : ${prefix}setl
+			gaming : ${prefix}setg
+		
             
             سيرفر الدعم: https://discord.gg/B6z7CB8
             **`);
