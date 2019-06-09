@@ -132,7 +132,8 @@ client.on("message", async message => {
             برودكاست عادي : ${prefix}bc
             معلومات عن السيرفر : ${prefix}server
             برودكاست للأونلاين فقط : ${prefix}bco
-			لإعطاء الباند : ${prefix}ban
+			لإعطاء باند : ${prefix}ban
+			لإعطاء كيك : ${prefix}kick
 			لمراسله صاحب البوت : ${prefix}contact
 			اوامر حاله البوت : ${prefix}status
             
@@ -232,7 +233,7 @@ message.channel.send(embed);
 
 
 
-//ميوت
+//كيك
 
 client.on('message', message => {
   if (message.author.x5bz) return;
