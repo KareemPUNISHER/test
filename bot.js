@@ -272,7 +272,62 @@ client.on('message', message => {
 });
 
 
+//اليوزر
 
+ client.on('message', message => {
+    if(message.content.startsWith (prefix  + 'user')) {
+     moment.locale('ar-ly');
+var args = message.content.split(" ").slice(1); 
+let user = message.mentions.users.first();
+var men = message.mentions.users.first();
+ var heg;
+ if(men) {
+     heg = men
+ } else {
+     heg = message.author
+ }
+var mentionned = message.mentions.members.first();
+  var h;
+ if(mentionned) {
+     h = mentionned
+ } else {
+     h = message.member
+ }
+if (args == '') {
+var z = message.author;
+}else {
+var z = message.mentions.users.first();
+}
+let oi = message.mentions.users.first() ? message.mentions.users.first().id : message.author.id ; 
+  let img = message.mentions.users.first() ? message.mentions.users.first().username : message.author.username;
+  let imagemm = message.mentions.users.first() ? message.mentions.users.first().avatarURL : message.author.avatarURL
+  message.guild.fetchInvites().then(invs => {
+    let member = client.guilds.get(message.guild.id).members.get(oi);
+    let personalInvites = invs.filter(i => i.inviter.id === oi);
+    let urll = invs.filter(i => i.inviter.id === oi);
+    let link = urll.reduce((p , v) => v.url +` , Total de membros recrutados no convite: ${v.uses}.\n`+ p, `\nServidor: ${message.guild.name} \n `);
+    let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
+   let exec = personalInvites.reduce((p, v) => v.inviter);
+ let possibleInvites = [['Total de membros recrutados:']];
+possibleInvites.push([inviteCount, exec]);
+        let user = message.mentions.users.first() || message.author;
+        let mem = message.guild.member(user);
+        let millisJoined = new Date().getTime() - mem.joinedAt.getTime();
+        let daysJoined = millisJoined / 1000 / 60 / 60 / 24;
+        let heroo = new Discord.RichEmbed()
+        .setColor('RANDOM')
+        .addField(':دخولك لديسكورد', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true)
+        .addField(':انضمامك لسيرفنا', `${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')} \n \`${moment(h.joinedAt).fromNow()}\``, true)
+        .setTitle(`__${z.username}__ **Info**`)
+         .addField('عدد الدعوات', `**${Number(inviteCount)}**`, true)
+.setThumbnail(imagemm)
+.setFooter(message.author.username, message.author.avatarURL);
+
+     message.channel.send({embed:heroo});    
+    });
+
+};
+});
 
 
 //الحاله
