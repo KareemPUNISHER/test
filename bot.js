@@ -130,6 +130,7 @@ client.on("message", async message => {
             معلومات عن السيرفر : ${prefix}server
             برودكاست للأونلاين فقط : ${prefix}bco
 			لإعطاء الباند : ${prefix}ban
+			لمراسله صاحب البوت : ${prefix}contact
             
             سيرفر الدعم: https://discord.gg/B6z7CB8
             **`);
@@ -167,7 +168,8 @@ message.channel.send(`**:white_check_mark: ${user.tag} banned from the server ! 
 }
 });
 
-//ميوت
+
+//مراسله صاحب البوت
 client.on('message' , message => {
 if (message.author.bot) return;
 if (message.content.startsWith(prefix + "contact")) {
@@ -199,6 +201,7 @@ message.channel.send(embed);
 }
     
 });
+
 
 
 //الحاله
