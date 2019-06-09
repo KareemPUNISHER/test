@@ -498,9 +498,6 @@ message.channel.send(embed);
     
 });
 
-//ميوت
-
-
 
 
 //الحاله
