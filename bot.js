@@ -120,6 +120,8 @@ client.on("message", async message => {
     }
 });
 
+//هيلب
+
 client.on("message", async message => {
     if(message.content.startsWith(prefix + "help")) {
         let help = new Discord.RichEmbed()
@@ -140,8 +142,10 @@ client.on("message", async message => {
     }
 });
 
+//حالات البوت
+
 client.on("message", async message => {
-    if(message.content.startsWith(prefix + "help")) {
+    if(message.content.startsWith(prefix + "status")) {
         let help = new Discord.RichEmbed()
             .setColor("RANDOM")
             .setThumbnail(message.author.avatarURL)
