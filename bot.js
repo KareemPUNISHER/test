@@ -129,6 +129,7 @@ client.on("message", async message => {
             برودكاست عادي : ${prefix}bc
             معلومات عن السيرفر : ${prefix}server
             برودكاست للأونلاين فقط : ${prefix}bco
+			لإعطاء الباند : ${prefix}ban
             
             سيرفر الدعم: https://discord.gg/B6z7CB8
             **`);
@@ -136,7 +137,7 @@ client.on("message", async message => {
     }
 });
 
-///////باند
+//باند
 
 client.on('message', message => {
   if (message.author.codes) return;
