@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^11.4.2"
-	"and": "0.0.3",
     "anti-spam": "^0.2.7",
     "array-sort": "^1.0.0",
     "ascii-data-table": "^2.1.1",
