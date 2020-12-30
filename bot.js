@@ -1,60 +1,133 @@
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 const client = new Discord.Client();
+const prefix = "$";
+var adminprefix = '$'
 
-var config = {
-  events: [
-    {type: "CHANNEL_CREATE", logType: "CHANNEL_CREATE", limit: 4 , delay: 5000},
-    {type: "CHANNEL_DELETE", logType: "CHANNEL_DELETE", limit: 4, delay: 5000},
-    {type: "GUILD_MEMBER_REMOVE", logType: "MEMBER_KICK", limit: 4, delay: 5000},
-    {type: "GUILD_BAN_ADD", logType: "MEMBER_BAN_ADD", limit: 4, delay: 5000},
-    {type: "GUILD_ROLE_CREATE", logType: "ROLE_CREATE", limit: 5, delay: 5000},
-    {type: "GUILD_ROLE_DELETE", logType: "ROLE_DELETE", limit: 4, delay: 5000},
-  ]
-}
-client.on("error", (e) => console.error(e));
-client.on("raw", (packet)=> {
-  let {t, d} = packet, type = t, {guild_id} = data = d || {};
-  if (type === "READY") {
-    client.startedTimestamp = new Date().getTime();
-    client.captures = [];
-  }
-  let event = config.events.find(anEvent => anEvent.type === type);
-  if (!event) return;
-  let guild = client.guilds.get(guild_id);
-  if (!guild) return;
-  guild.fetchAuditLogs({limit : 1, type: event.logType})
-    .then(eventAudit => {
-      let eventLog = eventAudit.entries.first();
-      if (!eventLog) return;
-      let executor = eventLog.executor;
-      guild.fetchAuditLogs({type: event.logType, user: executor})
-        .then((userAudit, index) => {
-          let uses = 0;
-          userAudit.entries.map(entry => {
-            if (entry.createdTimestamp > client.startedTimestamp && !client.captures.includes(index)) uses += 1;
-          });
-          setTimeout(() => {
-            client.captures[index] = index
-          }, event.delay || 2000)
-          if (uses >= event.limit) {
-            client.emit("reachLimit", {
-              user: userAudit.entries.first().executor,
-              member: guild.members.get(executor.id),
-              guild: guild,
-              type: event.type,
-            })
-          }
-        }).catch(console.error)
-    }).catch(console.error)
-});
-client.on("reachLimit", (limit)=> {
-  let log = limit.guild.channels.find( channel => channel.name === "security-log");
-  log.send(limit.user.username+"\** سيرفر بيتهكر ! ** ");
-  limit.guild.owner.send(limit.user.username+"\** سيرفرك بيتهكر ! ** ")
-  limit.member.roles.map(role => {
-    limit.member.removeRole(role.id)
-    .catch(log.send)
+
+
+client.on('ready',  () => {
+    console.log('PUNISHERS BOT By KareemPUNISHER  ');
+    console.log(`Logged in as * [ " ${client.user.username} " ] servers! [ " ${client.guilds.size} " ]`);
+    console.log(`Logged in as * [ " ${client.user.username} " ] Users! [ " ${client.users.size} " ]`);
+    console.log(`Logged in as * [ " ${client.user.username} " ] channels! [ " ${client.channels.size} " ]`);
   });
+
+
+
+//امر الكتابه و امبيد
+
+client.on('message', message => {
+  if (message.author.bot) return;
+
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+// +say
+  if (command === "say") {
+if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
+  if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
+          message.delete()
+    message.channel.sendMessage(args.join(" "))
+  }
+  
+ 
+
+if (command == "em") {
+if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
+  if(!message.member.hasPermission('MANAGE_MESSAGES')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `MANAGE_MESSAGES`' );
+    let say = new Discord.RichEmbed()
+    .setDescription(args.join("  "))
+    .setColor(0x23b2d6)
+    message.channel.sendEmbed(say);
+    message.delete();
+    
+  }
+
+
 });
+
+
+//moving chat
+
+
+client.on("ready", async  => {
+setInterval(function(){
+client.channels.find( channel => channel.id === '791368577978335262').setName("W");
+client.channels.find( channel => channel.id === '791368577978335262').setName("We");
+client.channels.find( channel => channel.id === '791368577978335262').setName("Wel");
+client.channels.find( channel => channel.id === '791368577978335262').setName("Welc");
+client.channels.find( channel => channel.id === '791368577978335262').setName("Welco");
+client.channels.find( channel => channel.id === '791368577978335262').setName("Welcom");
+client.channels.find( channel => channel.id === '791368577978335262').setName("Welcome");
+client.channels.find( channel => channel.id === '791368577978335262').setName("Welcome T");
+client.channels.find( channel => channel.id === '791368577978335262').setName("Welcome To");
+client.channels.find( channel => channel.id === '791368577978335262').setName("Welcome To E");
+client.channels.find( channel => channel.id === '791368577978335262').setName("Welcome To Er");
+client.channels.find( channel => channel.id === '791368577978335262').setName("Welcome To Err");
+client.channels.find( channel => channel.id === '791368577978335262').setName("Welcome To Erro");
+client.channels.find( channel => channel.id === '791368577978335262').setName("Welcome To Error");
+client.channels.find( channel => channel.id === '791368577978335262').setName("Welcome To Error U");
+client.channels.find( channel => channel.id === '791368577978335262').setName("Welcome To Error Un");
+client.channels.find( channel => channel.id === '791368577978335262').setName("Welcome To Error Uni");
+client.channels.find( channel => channel.id === '791368577978335262').setName("Welcome To Error Unit");
+  }, 3000);
+});
+
+//لمعرفه البوت من متى شغال
+
+client.on('message', message => {
+     if (message.author.bot) return;
+if (message.content.startsWith(prefix + "uptime")) {
+    let uptime = client.uptime;
+
+    let days = 0;
+    let hours = 0;
+    let minutes = 0;
+    let seconds = 0;
+    let notCompleted = true;
+
+    while (notCompleted) {
+
+        if (uptime >= 8.64e+7) {
+
+            days++;
+            uptime -= 8.64e+7;
+
+        } else if (uptime >= 3.6e+6) {
+
+            hours++;
+            uptime -= 3.6e+6;
+
+        } else if (uptime >= 60000) {
+
+            minutes++;
+            uptime -= 60000;
+
+        } else if (uptime >= 1000) {
+            seconds++;
+            uptime -= 1000;
+
+        }
+
+        if (uptime < 1000)  notCompleted = false;
+
+    }
+
+    message.channel.send("`" + `${days} days, ${hours} hrs, ${minutes} , ${seconds} sec` + "`**🎛 **");
+
+}
+});
+
+
+
+
+
+
+
+
 
 client.login(process.env.BOT_TOKEN);
